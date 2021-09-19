@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: azure-agent-pool
+  name: azure-agent-pool
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azure-agent-pool
+  template:
+    metadata:
+      labels:
+        app: azure-agent-pool
+    spec:
+      containers:
+      - image: k3d-myregistry.localhost:12345/ado-agent:local
+        name: ado-agent-1
+        env:
+        - name: AZ_AGENT_NAME
+          value: agent-1
+        envFrom:
+        - configMapRef:
+            name: azure-agent-config
+      - image: k3d-myregistry.localhost:12345/ado-agent:local
+        name: ado-agent-2
+        env:
+        - name: AZ_AGENT_NAME
+          value: agent-2
+        envFrom:
+        - configMapRef:
+            name: azure-agent-config
+      - image: k3d-myregistry.localhost:12345/ado-agent:local
+        name: ado-agent-3
+        env:
+        - name: AZ_AGENT_NAME
+          value: agent-3
+        envFrom:
+        - configMapRef:
+            name: azure-agent-config
