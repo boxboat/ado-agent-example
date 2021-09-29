@@ -5,7 +5,7 @@ Run the included `cluster-with-registry.sh` script to create a k3d cluster and l
 
 Run the included `build.sh` script to build the agent Docker image and push it to the local registry.
 
-Replace the values in `vars.env` with your own and use it to create a `ConfigMap` Kubernetes resource.
+Replace the values in `vars.env` with your own and use it to create a `ConfigMap` Kubernetes resource named `azure-agent-config`.
 
 Use the provided `deploy.yaml` manifest file to create a `Deployment` in the k3d cluster.
 
